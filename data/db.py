@@ -37,7 +37,7 @@ def create_db() -> None:
     conn.close()
 
 
-def create_survey(name: str, user: int, date: str, questions: list[str]) -> int:
+def create_survey(name: str, user: int, date: str, questions: List[str]) -> int:
     DB_NAME = get_env("DB_NAME")
     LID = int(get_env("LID")) + 1
     conn = sqlite3.connect(DB_NAME)
@@ -52,7 +52,7 @@ def create_survey(name: str, user: int, date: str, questions: list[str]) -> int:
     return LID
 
 
-def create_answer(survey: int, user: int, answers: list[str]) -> None:
+def create_answer(survey: int, user: int, answers: List[str]) -> None:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -63,7 +63,7 @@ def create_answer(survey: int, user: int, answers: list[str]) -> None:
     conn.close()
 
 
-def get_survey(sid: int) -> list[int, str, int, str, str]:
+def get_survey(sid: int) -> List[int, str, int, str, str]:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -75,7 +75,7 @@ def get_survey(sid: int) -> list[int, str, int, str, str]:
     return survey
 
 
-def get_surveys(rowid_range: (int, int)) -> list[int, str]:  # type: ignore
+def get_surveys(rowid_range: (int, int)) -> List[int, str]:  # type: ignore
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -89,7 +89,7 @@ def get_surveys(rowid_range: (int, int)) -> list[int, str]:  # type: ignore
     return surveys
 
 
-def get_answers_by_sid(sid: int) -> list[tuple[int, str]]:
+def get_answers_by_sid(sid: int) -> List[tuple[int, str]]:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -101,7 +101,7 @@ def get_answers_by_sid(sid: int) -> list[tuple[int, str]]:
     return answers
 
 
-def get_answer_by_uid(uid: int) -> list[int, str]:
+def get_answer_by_uid(uid: int) -> List[int, str]:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -113,7 +113,7 @@ def get_answer_by_uid(uid: int) -> list[int, str]:
     return answers
 
 
-def get_surveys_by_answers_by_uid(uid: int) -> list[list[int, int]]:
+def get_surveys_by_answers_by_uid(uid: int) -> List[List[int, int]]:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -131,7 +131,7 @@ def get_surveys_by_answers_by_uid(uid: int) -> list[list[int, int]]:
     return surveys
 
 
-def get_surveys_by_uid(uid: int) -> list[list[int, int]]:
+def get_surveys_by_uid(uid: int) -> List[List[int, int]]:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
@@ -160,7 +160,7 @@ def delete_survey(sid: int) -> None:
     conn.close()
 
 
-def change_survey(sid: int, name: str, questions: list[str]) -> None:
+def change_survey(sid: int, name: str, questions: List[str]) -> None:
     DB_NAME = get_env("DB_NAME")
     conn = sqlite3.connect(DB_NAME)
     cur = conn.cursor()
